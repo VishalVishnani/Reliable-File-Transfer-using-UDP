@@ -1,0 +1,38 @@
+ECEN 5273- Network Systems
+
+Reliable File Tranfer using UDP
+
+Author: Vishal Vishnani
+
+Date: 9/24/2017
+
+
+Description: We know that UDP is an unreliable protocol with no handshaking dialogues and no mechanism of acknowledgement. In this assignment, I have used UDP for transfering large files and tried to make it as reliable as possible. In my implementation, every packet has a sequence number which is verified at the receiver and if it receives the right packet,it send back an ACK of the next sequence number it expects to receive. If an ACK is lost, sender has a timeout and will retransmit the packet. Out of order packets are discarded.
+
+
+File Structure:
+
+1]udp_client.c - Client takes the command from user, sends it to the server and then waits for server's response.
+                 The list of command includes:
+                 -get [file_name]
+                 -put [file_name]
+                 -delete [file_name]
+                 -ls
+                 -exit
+
+2]udp_server.c - The server responds to the client's request.
+
+3]Makefile - Makefile to create executable
+
+
+Execution:
+
+1]First create executable and start the server.
+    make server
+    ./server [port number]
+
+2]Now start the client.
+    make client
+    ./client [ip address of server] [port number]
+
+3]Now the client can take command from user and send it to server.
